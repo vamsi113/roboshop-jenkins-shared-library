@@ -1,6 +1,10 @@
 def codeQuality() {
     stage('Code Quality') {
-        echo 'Code Quality'
+        withCredentials([usernamePassword(credentialsId: 'SONAR', passwordVariable: 'sonarPass', usernameVariable: 'sonarUser')]) {
+            sh '''
+            sonar-scanner -Dsonar.host.url=http://172.31.15.159:9000 -Dsonar.login=${sonarUser} -Dsonar.password=4{sonarPass} -Dsonar.projectKey=${COMPONENT}
+       '''
+        }
     }
 }
 
