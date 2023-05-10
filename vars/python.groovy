@@ -27,12 +27,7 @@ def call() {
                     echo 'Unit Tests'
                 }
             }
-            stage('Download Dependancies') {
-                when { tag "*"}
-                steps {
-                    echo 'Download Dependancies'
-                }
-            }
+
             stage('Prepare Artifacts') {
                 when { tag "*"}
                 steps {

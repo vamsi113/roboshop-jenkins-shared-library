@@ -2,6 +2,11 @@ def call() {
     pipeline {
         agent any
         stages {
+            stage('Compile Code') {
+                steps {
+                    echo 'Compile Code'
+                }
+            }
 
             common.codeQuality()
 
@@ -27,7 +32,7 @@ def call() {
                     echo 'Unit Tests'
                 }
             }
-            stage('Download Dependancies') {
+            stage('Build  Package') {
                 when { tag "*"}
                 steps {
                     echo 'Download Dependancies'
