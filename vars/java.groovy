@@ -1,55 +1,14 @@
 def call() {
-    pipeline {
-        agent any
-        stages {
-            stage('Compile Code') {
-                steps {
-                    echo 'Compile Code'
-                }
-            }
-
+    node {
+        try {
+            common.codeCheckout()
             common.codeQuality()
+            common.codeChecks()
+            common.artifacts()
 
-            stage('Style Checks') {
-                when {
-                    anyOf{
-                        branch "main"
-                        tag "*"
-                    }
-                }
-                steps {
-                    echo 'Style Checks'
-                }
-            }
-            stage('Unit Tests') {
-                when {
-                    anyOf{
-                        branch "main"
-                        tag "*"
-                    }
-                }
-                steps {
-                    echo 'Unit Tests'
-                }
-            }
-            stage('Build  Package') {
-                when { tag "*"}
-                steps {
-                    echo 'Download Dependancies'
-                }
-            }
-            stage('Prepare Artifacts') {
-                when { tag "*"}
-                steps {
-                    echo 'Prepare Artifacts'
-                }
-            }
-            stage('Publish Artifacts') {
-                when { tag "*"}
-                steps {
-                    echo 'Publish Artifacts'
-                }
-            }
+        } catch (Exception e) {
+            mail bcc: '', body: "Build Failed ${RUN_DISPLAY_URL}", cc: '', from: 'sudddapalli@gmail.com', replyTo: '', subject: 'BUILD_FAILURE', to: 'sudddapalli@gmail.com'
         }
+
     }
 }
