@@ -1,3 +1,11 @@
+def codeCheckout() {
+    stage('code Checkout') {
+        sh 'find . | sed 1d |xargs rm -f'
+        git branch: 'main', url: "https://github.com/vamsi113/${COMPONENT}.git"
+    }
+}
+
+
 def codeQuality() {
     stage('Code Quality') {
         withCredentials([usernamePassword(credentialsId: 'SONAR', passwordVariable: 'sonarPass', usernameVariable: 'sonarUser')]) {
