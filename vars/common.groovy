@@ -43,12 +43,12 @@ def artifacts() {
                 sh '''
                     mvn clean package 
                     mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar
-                    zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}.jar requirements.txt   
+                    zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}.jar 
                 '''
             }
             if(env.APPTYPE== "python") {
               sh '''
-                 zip -r ${COMPONENT}-${TAG_NAME}.zip *.py ${COMPONENT}.ini 
+                 zip -r ${COMPONENT}-${TAG_NAME}.zip *.py ${COMPONENT}.ini requirements.txt
               '''
             }
             if(env.APPTYPE== "nginx") {
