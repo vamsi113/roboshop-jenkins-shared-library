@@ -11,7 +11,6 @@ def codeQuality() {
         withCredentials([usernamePassword(credentialsId: 'SONAR', passwordVariable: 'sonarPass', usernameVariable: 'sonarUser')]) {
             sh '''
                sonar-scanner -Dsonar.host.url=http://172.31.7.124:9000 -Dsonar.login=${sonarUser} -Dsonar.password=${sonarPass} -Dsonar.projectKey=${COMPONENT} -Dsonar.qualitygate.wait=true ${SONAR_EXTRA_OPTS}
-               echo OK
             '''
         }
     }
