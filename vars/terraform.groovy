@@ -7,8 +7,6 @@ def call() {
         }
 
         parameters {
-
-
             choice(name: 'ENV', choices: ['', 'dev', 'prod'], description: 'environment')
             choice(name: 'ACTION', choices: ['', 'apply', 'destroy'], description: 'action')
         }
