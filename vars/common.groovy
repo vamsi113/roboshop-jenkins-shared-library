@@ -35,14 +35,8 @@ def artifacts() {
         stage('Prepare Artifacts') {
             if(env.APPTYPE== "nodejs"){
                 sh '''
-                    npm install har-validator@latest
-                    npm uninstall express-pino-logger
-                    npm install pino-http
-                    npm install uuid@latest
-
-
- 
-                    //zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
+                  npm install
+                  #zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
                 '''
             }
             if(env.APPTYPE== "java") {
