@@ -5,7 +5,7 @@ def call() {
             common.codeCheckout()
             common.codeQuality()
             common.codeChecks()
-            #common.artifacts()
+            //common.artifacts()
             common.docker()
 
         } catch (Exception e) {
